@@ -1,9 +1,11 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Build') {            
             steps {
-                bat 'C://Users//P102QBPH1//mvn//apache-maven-3.8.6//bin//mvn -B -DskipTests clean package'
+                withMaven(maven : 'apache-maven-3.8.6') {
+                bat'mvn -B -DskipTests clean package'
+            }               
             }
         }
         stage('Test') {
